@@ -75,12 +75,14 @@ public class Version3 implements Code {
 		String output = "";
 
 		// Encoding each character of the input string
-		for (int i = 0; i < input.size(); i++) {
+		for (int i = 0; i < input.length(); i++) {
 			char curr_char = input.charAt(i); // current character 
 
 			// Simply add the current character if it is not "encodable"
-			if (!encodeMap.containsKey(curr_char)) output += curr_char; 
-
+			if (!encodeMap.containsKey(curr_char)) { 
+				output += curr_char; 
+				continue;
+			}
 			// If it is encodable, we grab the encoding and add "noise"
 			int encoding = encodeMap.get(curr_char);
 			output += encoding;
@@ -98,8 +100,45 @@ public class Version3 implements Code {
 	@Override
 	public String decode(String input) {
 		String output = "";
+		int pos = 0; // position of where we are in the input
 
-		// TO BE COMPLETED 2/5
+		// Nonsense characters
+		List <Character> nonsense = new ArrayList<> ();
+		nonsense.add('6');
+		nonsense.add('7');
+		nonsense.add('8');
+		nonsense.add('9');
+		nonsense.add('0');
+
+		// Scan the input to find any valid characters that should be decoded (valid characters E [1,5])
+		while (pos < input.length()) {
+			char curr_char = input.charAt(pos);
+
+			// If we have a nonsense character, we skip past it 
+			if (nonsense.contains(curr_char)) { 
+				pos++;
+				continue; 
+			}
+
+			// Otherwise, we have a valid character. We need to keep searching for valid characters until we reach an invalid
+			// character again. After that, we will have the full encoded value to decode  
+			String encoded_value = "";
+			encoded_value += curr_char; 
+			pos++; // go to next position
+			while (pos < input.length()) {
+				char next_char = input.charAt(pos);
+				if (nonsense.contains(next_char)) break; // if we run into an invalid character, we're done here 
+				encoded_value += next_char;
+				pos++; 
+			}
+			
+			// Now, we can decode that encoded value 
+			int code = Integer.parseInt(encoded_value);
+			if (decodeMap.containsKey(code)) {
+				output += decodeMap.get(code);
+			}
+
+		}
 		
 		return output;
 	}
