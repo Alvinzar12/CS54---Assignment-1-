@@ -126,7 +126,7 @@ public class Version3 implements Code {
 			String encoded_value = "";
 			encoded_value += curr_char; 
 			pos++; // go to next position
-			while (pos < input.length()) {
+			while (pos < input.length() && encoded_value.length() < 3) {
 				char next_char = input.charAt(pos);
 				if (nonsense.contains(next_char)) break; // if we run into an invalid character, we're done here 
 				encoded_value += next_char;
@@ -134,9 +134,11 @@ public class Version3 implements Code {
 			}
 			
 			// Now, we can decode that encoded value 
-			int code = Integer.parseInt(encoded_value);
-			if (decodeMap.containsKey(code)) {
-				output += decodeMap.get(code);
+			if (encoded_value.length() == 2 || encoded_value.length() == 3) {
+				int code = Integer.parseInt(encoded_value);
+				if (decodeMap.containsKey(code)) {
+					output += decodeMap.get(code);
+				}
 			}
 
 		}

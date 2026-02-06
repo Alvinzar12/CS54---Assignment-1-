@@ -51,7 +51,7 @@ public class Version2 implements Code {
 	public String encode(String input) {
 		String output = "";
 
-		input = input.toUpperCase(); 
+		//input = input.toUpperCase(); we are assuming that we don't deal with inavlid characters as per Prof. Lander
 
         for (int i = 0; i < input.length(); i++) {
             char ch = input.charAt(i);
