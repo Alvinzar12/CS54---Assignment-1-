@@ -27,14 +27,11 @@ public class Version1 implements Code {
             encode[i + 26] = lower[i]; 
         }
 
-        for (int i = 0; i < 52; i++) {
-            char encodedChar = encode[i];
-
-            if (Character.isUpperCase(encodedChar)) {
-                decode[encodedChar - 'A'] = (char) ('A' + i);
-            } else {
-                decode[encodedChar - 'a' + 26] = (char) ('a' + i - 26);
-            }
+        for (int i = 0; i < 26; i++) {
+            char encodedUpper = encode[i];
+            decode[encodedUpper - 'A'] = (char) ('A' + i);
+            char encodedLower = encode[i + 26];
+            decode[encodedLower - 'a' + 26] = (char) ('a' + i);
         }
 	}
 	

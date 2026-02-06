@@ -1,5 +1,7 @@
 package assignment01;
 
+import java.util.*;
+
 public class Version3 implements Code {
 
 	// These variables persist for the entire life of each Version3 object
@@ -9,8 +11,8 @@ public class Version3 implements Code {
 
 	public Version3() {
 
-		encodeMap = new TreeMap();
-		decodeMap = new TreeMap();
+		encodeMap = new TreeMap<>();
+		decodeMap = new TreeMap<>();
 		random = new Random();
 
 		// Store all the acceptable characters (i.e., a-z, A-Z, special char) in a list
@@ -78,16 +80,15 @@ public class Version3 implements Code {
 		for (int i = 0; i < input.length(); i++) {
 			char curr_char = input.charAt(i); // current character 
 
-			// Simply add the current character if it is not "encodable"
+			// Simply skip the current character if it is not "encodable"
 			if (!encodeMap.containsKey(curr_char)) { 
-				output += curr_char; 
 				continue;
 			}
 			// If it is encodable, we grab the encoding and add "noise"
 			int encoding = encodeMap.get(curr_char);
 			output += encoding;
 			int noise_length = 1 + random.nextInt(3); // gives me a value E[1,3]
-			for (int i = 0; i < noise_length; i++) {
+			for (int j = 0; j < noise_length; j++) {
 				output += (6 + random.nextInt(4)); // this loop generates some random numbers E[6,9] 
 			}
 			if (random.nextInt(10) > 7) output += "0";

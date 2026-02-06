@@ -96,6 +96,6 @@ public class Version2 implements Code {
             i += 2;
         }
 
-		return output.toLowerCase();
+		return output;
 	}
 }
