@@ -1,0 +1,14 @@
+STRATEGY 1
+
+CASE 1: Hello, Alvin!
+CASE 2: AaZz 1234?!
+
+STRATEGY 2 
+
+CASE 1: HELLO WORLD!
+CASE 2: SUCCESS?
+
+STRATEGY 3
+
+CASE 1: Hello World
+CASE 2: AaBbCc, ZzYyXx!
