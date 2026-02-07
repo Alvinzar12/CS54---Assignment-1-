@@ -1,14 +1,20 @@
 STRATEGY 1
 
 CASE 1: Hello, Alvin!
+    EXPECTED: Ywppf, Mpcrd!
 CASE 2: AaZz 1234?!
+    EXPECTED: MmIi 1234?!
 
 STRATEGY 2 
 
 CASE 1: HELLO WORLD!
+    EXPECTED: random #s
 CASE 2: SUCCESS?
+    EXPECTED: random #s
 
 STRATEGY 3
 
 CASE 1: Hello World
+    EXPECTED: random #s
 CASE 2: AaBbCc, ZzYyXx!
+    EXPECTED: random #s
